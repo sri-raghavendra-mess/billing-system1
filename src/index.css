@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --ink: #0f172a;
+  --muted: #475569;
+  --primary: #0ea5e9;
+  --primary-dark: #2563eb;
+  --accent: #f97316;
+  --border: #d6d9e0;
+  font-family: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(14,165,233,0.08), transparent 30%),
+    radial-gradient(circle at 80% 0%, rgba(249,115,22,0.08), transparent 32%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2f7 55%, #e2e8f0 100%);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+#root { overflow-x: hidden; }
+
+a { color: var(--accent); }
+a:hover { color: #a855f7; }
+
+.card {
+  @apply rounded-2xl p-5 md:p-7;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 48px rgba(15,23,42,0.08);
+}
+
+.btn {
+  @apply rounded-xl px-4 py-2 font-semibold transition active:translate-y-[1px];
+}
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 70%, var(--primary) 100%);
+  box-shadow: 0 12px 28px rgba(14,165,233,0.3);
+}
+.btn-primary:hover { filter: brightness(1.04); }
+.btn-ghost {
+  @apply bg-white text-slate-800 border border-slate-200;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+.btn-ghost:hover { background: #f8fafc; }
+
+.input {
+  @apply w-full rounded-xl border px-3 py-2 bg-white text-slate-800;
+  border-color: var(--border);
+  transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(14,165,233,0.2);
+  transform: translateY(-1px);
+}
+
+.table { @apply w-full text-sm md:text-base text-slate-800; }
+.table th { @apply text-left font-semibold pb-2; color: var(--muted); }
+.table td { @apply py-2 border-b; border-color: var(--border); }
+
+header.sticky {
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.85);
+  border-bottom: 1px solid var(--border);
+}
+
+.badge {
+  @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold;
+  background: #e0f2fe;
+  color: #075985;
+}
+
+.glass {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+.shadow-soft { box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+
+/* Tablet: show only first 3 qty pills, hide rest (horizontal scroll still available on desktop) */
+.qty-scroll {
+  max-width: 360px; /* ~6 pills visible on laptop */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  padding-right: 6px;
+}
+.qty-scroll::-webkit-scrollbar { height: 6px; }
+.qty-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+.qty-scroll::-webkit-scrollbar-track { background: transparent; }
+
+@media (max-width: 1024px) {
+  /* show ~3 pills on tablets, swipe for the rest */
+  .qty-scroll {
+    max-width: 220px;
+  }
+}

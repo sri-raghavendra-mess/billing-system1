@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "menu",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "sessionType", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
