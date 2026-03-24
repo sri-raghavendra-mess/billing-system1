@@ -38,6 +38,7 @@ function AppRoutes({ user, checking }) {
 export default function App() {
   const [user, setUser] = useState(null);
   const [checking, setChecking] = useState(true);
+  const futureFlags = { v7_startTransition: true, v7_relativeSplatPath: true };
 
   useEffect(() => {
     const unsub = listenAuth(u => {
@@ -51,7 +52,7 @@ export default function App() {
 
   return (
     <AuthContext.Provider value={{ user }}>
-      <BrowserRouter basename={basename}>
+      <BrowserRouter basename={basename} future={futureFlags}>
         <AppRoutes user={user} checking={checking} />
       </BrowserRouter>
     </AuthContext.Provider>

@@ -78,22 +78,26 @@ export default function UpdateMenuSection() {
         </label>
         <button className="btn btn-primary" onClick={submit}>{editingId ? 'Update Item' : 'Add Item'}</button>
       </div>
-      <table className="table">
-        <thead><tr><th>Item</th><th>Price</th><th>Avail</th><th>Action</th></tr></thead>
-        <tbody>
-          {menu.map(m => (
-            <tr key={m.id}>
-              <td>{m.itemName}</td>
-              <td>{formatInr(m.price)}</td>
-              <td><input type="checkbox" checked={m.isAvailable} onChange={() => toggleAvailability(m)} /></td>
-              <td className="space-x-2">
-                <button className="btn btn-ghost px-3" onClick={() => startEdit(m)}>Edit</button>
-                <button className="btn btn-ghost px-3" onClick={() => setConfirmId(m.id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-x-auto">
+        <table className="table min-w-[520px]">
+          <thead><tr><th>Item</th><th>Price</th><th>Avail</th><th>Action</th></tr></thead>
+          <tbody>
+            {menu.map(m => (
+              <tr key={m.id}>
+                <td>{m.itemName}</td>
+                <td>{formatInr(m.price)}</td>
+                <td><input type="checkbox" checked={m.isAvailable} onChange={() => toggleAvailability(m)} /></td>
+                <td>
+                  <div className="flex flex-wrap sm:flex-nowrap gap-2">
+                    <button className="btn btn-ghost w-full sm:w-auto px-3" onClick={() => startEdit(m)}>Edit</button>
+                    <button className="btn btn-ghost w-full sm:w-auto px-3" onClick={() => setConfirmId(m.id)}>Delete</button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <ConfirmDialog open={!!confirmId} onClose={() => setConfirmId(null)} onConfirm={handleDelete} />
     </div>
   );

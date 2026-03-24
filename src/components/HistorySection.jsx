@@ -136,7 +136,8 @@ export default function HistorySection() {
         <button className="btn btn-primary" onClick={()=>setFilter(f=>({...f}))}>Search</button>
       </div>
       <div className="card">
-        <table className="table">
+        <div className="overflow-x-auto">
+          <table className="table min-w-[540px]">
           <thead><tr><th>Date</th><th>Total Sales</th><th>Expense</th><th>Profit</th></tr></thead>
           <tbody>
             {filtered.length === 0 && (
@@ -159,6 +160,7 @@ export default function HistorySection() {
             ))}
           </tbody>
         </table>
+        </div>
       </div>
       
       {selectedDay && (

@@ -53,7 +53,8 @@ export default function ProfitSection() {
 
       <div className="card">
         <div className="text-lg font-semibold mb-3">Today Breakdown ({todayDisplay})</div>
-        <table className="table">
+        <div className="overflow-x-auto">
+          <table className="table min-w-[480px]">
           <thead><tr><th>Session</th><th>Cash</th><th>UPI</th><th>Total</th></tr></thead>
           <tbody>
             {['morning','afternoon','evening'].map(s=>(
@@ -65,12 +66,14 @@ export default function ProfitSection() {
               </tr>
             ))}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
 
       <div className="card">
         <div className="text-lg font-semibold mb-3">Today Expenses</div>
-        <table className="table">
+        <div className="overflow-x-auto">
+          <table className="table min-w-[540px]">
           <thead><tr><th>Title</th><th>Amount</th><th>Note</th><th></th></tr></thead>
           <tbody>
             {expenses.length === 0 && <tr><td colSpan="4" className="text-center text-slate-500">No expenses</td></tr>}
@@ -79,14 +82,17 @@ export default function ProfitSection() {
                 <td>{e.expenseTitle}</td>
                 <td>{formatInr(e.amount||0)}</td>
                 <td>{e.note || ''}</td>
-                <td className="space-x-2">
-                  <button className="btn btn-ghost" onClick={()=>setEditing(e)}>Edit</button>
-                  <button className="btn btn-ghost" onClick={()=>handleDelete(e.id)}>Delete</button>
+                <td>
+                  <div className="flex flex-wrap gap-2">
+                    <button className="btn btn-ghost w-full sm:w-auto" onClick={()=>setEditing(e)}>Edit</button>
+                    <button className="btn btn-ghost w-full sm:w-auto" onClick={()=>handleDelete(e.id)}>Delete</button>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
-        </table>
+          </table>
+        </div>
       </div>
 
       <ExpenseForm editing={editing} onSaved={()=>setEditing(null)} />
